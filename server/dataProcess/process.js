@@ -58,7 +58,7 @@ class Fatigue {
   push(m) {
     this.arr.push(m);
     this.sum += m;
-    if(this.arr.length>100) {
+    if(this.arr.length>300) {
       let last = this.arr.shift();
       this.sum -= last;
     }
@@ -79,7 +79,7 @@ class Attention {
       this.arr.push(0)
     }
     
-    if(this.arr.length > 100) {
+    if(this.arr.length > 300) {
       let last = this.arr.shift()
       this.count -= last;
     }
@@ -94,8 +94,8 @@ async function saveData() {
   let  currentTime = 0;
   let Headx = new Head(0.04, 100);
   let Heady = new Head(0.04, 100);
-  let dazex = new Head(0.01, 100);
-  let dazey = new Head(0.01, 100);
+  let dazex = new Head(0.05, 1000);
+  let dazey = new Head(0.05, 1000);
   let attention = new Attention();
   let fatigue = new Fatigue();
   for( let i=0 ;i < jsonLabel.length; i++) {
@@ -115,8 +115,8 @@ async function saveData() {
       currentTime = 0;
       Headx = new Head(0.08, 100);
       Heady = new Head(0.08, 100);
-      dazex = new Head(0.01, 100);
-      dazey = new Head(0.01, 100);
+      dazex = new Head(0.05, 1000);
+      dazey = new Head(0.05, 1000);
       attention = new Attention();
       fatigue = new Fatigue();
     }

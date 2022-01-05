@@ -6,30 +6,34 @@ function App() {
   const [head, setHead] = useState();
   const [eye, setEye] = useState();
   const [gaze, setGaze]  = useState();
+  const [data, setData] = useState({});
+  const [time, setTime] = useState(500);
+  useEffect(()=>{
+    fetchData(time);
+  },[time]); 
 
   useEffect(()=>{
-    fetchData();
-  }) 
-  let faceprops = {
-    mouth: 0.1,
-    head: 0.1,
-    eye: 0.5,
-    gaze: { gazex: 0.01, gazey: 0.05 }
-  }
+    // setInterval(() => {
+    //   setTime((prev) => prev+1);
+    // }, 2000);
+  },[])
 
-  const fetchData = async () => {
-    fetch('http://localhost:3001/time', {
+  const fetchData = async (time) => {
+     const data = await fetch('http://localhost:3001/time', {
       method: 'POST', 
-      body: `timestamp=100`,
+      body: `timestamp=${time}`,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       mode: 'cors'
-    }).then(res => console.log('res',res.body))
+    }).then(res => res.json())
+    if(data.code == 200) {
+      setData(data.data);
+    }
   }
   return (
     <div>
-      <Scatter/>
+      <Scatter data={data}/>
     </div>
   );
 }

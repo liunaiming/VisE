@@ -11,14 +11,12 @@ const Scatter = (props) => {
   const scatterRef = useRef()
   // const [data, setData] = useState(props.data);
   const { data } = props;
-  console.log('data',data);
   useEffect(()=>{
-    drawScatter(data);
+    drawScatter();
   },[data]);
   // const data =[[11,15,0.2,0.3,"neutral","normal"],[30,40,-0.2,-0.5,"fear","headdown"],[40,45,0.3,0.6,"angry","accept"],[40,55,0.3,0.6,"happy","daze"],[110,45,0.3,0.6,"surprise","reject"],[110,75,0.3,0.26,"sad","accept"],[110,130,-0.3,0.6,"disgust","normal"]]
   const drawScatter = () => {
     let keys = Object.keys(data);
-    console.log('keys',keys);
     const canvas = scatterRef.current;
     const width = canvas.width;
     const height = canvas.height;

@@ -7,6 +7,17 @@ export const actions = {
   normal:"RGB(54, 70, 147,0.3)"
 };
 
+export const EmotionColor = {
+  "neutral":"RGB(189, 189, 189)",
+  "sad":"RGB(76, 103, 197)",
+  "happy":"RGB(244, 203, 85)",
+  "angry": "RGB(237, 108, 116)",
+  "surprise":"RGB(105, 196, 88)",
+  "disgust":"RGB(164, 133, 236)",
+  "fear":"RGB(98, 174, 221)",
+  "undetected":"RGB(30, 30, 30)",
+} 
+
 export const emotions = {
   neutral: (ctx,x,y) => {
       ctx.beginPath();

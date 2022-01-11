@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Face from './component/face';
 import Scatter from './component/sactter';
+import Bar from './component/bar';
 function App() {
   const [mouth, setMouth] = useState(); 
   const [head, setHead] = useState();
@@ -34,6 +35,7 @@ function App() {
   return (
     <div>
       <Scatter data={data}/>
+      <Bar data={data}/>
     </div>
   );
 }

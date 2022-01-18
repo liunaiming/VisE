@@ -8,14 +8,47 @@ export const actions = {
 };
 
 export const EmotionColor = {
-  "neutral":"RGB(189, 189, 189)",
-  "sad":"RGB(76, 103, 197)",
-  "happy":"RGB(244, 203, 85)",
-  "angry": "RGB(237, 108, 116)",
-  "surprise":"RGB(105, 196, 88)",
-  "disgust":"RGB(164, 133, 236)",
-  "fear":"RGB(98, 174, 221)",
-  "undetected":"RGB(30, 30, 30)",
+  "neutral": {
+    "normal": "RGBA(189, 189, 189, 0.6)",
+    "attention": "RGBA(189, 189, 189,1)",
+    "fatigue": "RGBA(189, 189, 189,1)"
+  },
+  "sad":{
+    "normal": "RGBA(76, 103, 197, 0.6)",
+    "attention": "RGBA(76, 103, 197,1)",
+    "fatigue": "RGBA(76, 103, 197,1)"
+  },
+  "happy":{
+    "normal": "RGBA(244, 203, 85,0.6)",
+    "attention": "RGBA(244, 203, 85,1)",
+    "fatigue": "RGBA(244, 203, 85,1)"
+  },
+  "angry": {
+    "normal": "RGBA(237, 108, 116,0.6)",
+    "attention": "RGBA(237, 108, 116,1)",
+    "fatigue": "RGBA(237, 108, 116,1)"
+  },
+  "surprise":{
+    "normal": "RGBA(105, 196, 88,0.6)",
+    "attention": "RGBA(105, 196, 88,1)",
+    "fatigue": "RGBA(105, 196, 88,1)"
+  },
+  "disgust":{
+    "normal": "RGBA(164, 133, 236,0.6)",
+    "attention": "RGBA(164, 133, 236,1)",
+    "fatigue": "RGBA(164, 133, 236,1)"
+  },
+  "fear":{
+    "normal": "RGBA(98, 174, 221,0.6)",
+    "attention": "RGBA(98, 174, 221,1)",
+    "fatigue": "RGBA(98, 174, 221,1)"
+  },
+  "undetected":
+  {
+    "normal": "RGBA(30, 30, 30,1)",
+    "attention": "RGBA(30, 30, 30,1)",
+    "fatigue": "RGBA(30, 30, 30,1)"
+  }
 } 
 
 export const emotions = {

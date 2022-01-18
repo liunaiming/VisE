@@ -32,10 +32,10 @@ class Head {
     }
     this.arr_min.push(data)
 
-    while(this.arr_max[0].count < this.count-this.threshold) {
+    while(this.arr_max[0].count < this.count-this.length) {
       this.arr_max.shift()
     }
-    while(this.arr_min[0].count < this.count-this.threshold) {
+    while(this.arr_min[0].count < this.count-this.length) {
       this.arr_min.shift();
     }
   }
@@ -83,7 +83,7 @@ class Attention {
       let last = this.arr.shift()
       this.count -= last;
     }
-    return this.count/this.arr.length;
+    return this.count/ this.arr.length;
   }
 }
 saveData()
@@ -92,10 +92,10 @@ async function saveData() {
   const jsonLabel= await csv().fromFile(LabelPath);
   let prefix = null;
   let  currentTime = 0;
-  let Headx = new Head(0.04, 100);
-  let Heady = new Head(0.04, 100);
-  let dazex = new Head(0.05, 1000);
-  let dazey = new Head(0.05, 1000);
+  let Headx = new Head(0.08, 100);
+  let Heady = new Head(0.08, 100);
+  let dazex = new Head(0.1, 1000);
+  let dazey = new Head(0.1, 1000);
   let attention = new Attention();
   let fatigue = new Fatigue();
   for( let i=0 ;i < jsonLabel.length; i++) {
@@ -115,8 +115,8 @@ async function saveData() {
       currentTime = 0;
       Headx = new Head(0.08, 100);
       Heady = new Head(0.08, 100);
-      dazex = new Head(0.05, 1000);
-      dazey = new Head(0.05, 1000);
+      dazex = new Head(0.1, 1000);
+      dazey = new Head(0.1, 1000);
       attention = new Attention();
       fatigue = new Fatigue();
     }

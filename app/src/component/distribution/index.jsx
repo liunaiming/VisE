@@ -4,17 +4,15 @@ import * as d3 from 'd3';
 import './index.css'
 import { EmotionColor } from '../../utils';
 const Distribution = (props) => {
-  const { data, sortArr } = props;
+  const { data, sortArr,keys } = props;
   const svgRef = useRef()
   useEffect(()=>{
     drawDistribution()
   },[data,sortArr])
   const drawDistribution = () => {
-
     const width = svgRef.current.clientWidth;
     const height = svgRef.current.clientHeight;
-    const padding = {top:height*0.1,left:0};
-    console.log('distribution',data,width,height);
+    const padding = {top:0,left:0};
     const emotion =[]
     let xScaleDomain = 0;
     for(let i=0; i<sortArr.length; i++) {
@@ -31,9 +29,8 @@ const Distribution = (props) => {
     
     const xScale_att = d3.scaleLinear()
                           .domain([0,1])
-                          .range([0,width*0.3]) 
-    
-                          console.log('rectData',emotion,xScale_att(data.attention.mid_attention));              
+                          .range([0,width*0.28]) 
+        
     const svg = d3.select(svgRef.current)
     svg.selectAll("*").remove();   
     svg.selectAll('.emotion')
@@ -76,10 +73,16 @@ const Distribution = (props) => {
     .attr('y1',height*0.5)
     .attr('y2',height*0.5)
     .attr('stroke','black')
+    // if(keys==0) {
+    //   let attentionAxis = d3.axisTop(xScale_att);
+    //   svg.append('g')
+    //       .attr("transform", "translate("+width*0.7+","+padding.top+")")
+    //       .call(attentionAxis);
+    // }
 
   }
   return (
-    <div className="distribution">
+    <div className={"distribution"}>
       <div className="distribution-id">{data.id}</div>
       <svg ref={svgRef}></svg>
     </div>

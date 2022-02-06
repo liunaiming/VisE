@@ -11,12 +11,14 @@ const Bar = (props) => {
     drawBar(data,"attention");
   },[data]);
   const drawBar = (obj,target) => {
-    let padding = { top: 40 , right: 20, bottom: 20, left: 70 };
     let width = svgRef.current.clientWidth
-    let height = svgRef.current.clientheight;
-    console.log('width',width)
-    let rectStep = 30;
-    let rectheight = 25;
+    let height = svgRef.current.clientHeight;
+    let padding = { top: height*0.1 , right: 20, bottom: 20, left: width*0.3 };
+    // let padding = { top: 40 , right: 20, bottom: 20, left: 70 };
+
+    console.log('width',width,height)
+    let rectStep = height*0.12;
+    let rectheight = height*0.08;
     let keys = Object.keys(obj);
     let res = {
       "neutral":[],
@@ -85,7 +87,7 @@ const Bar = (props) => {
                 // .attr("stroke", "White")
                 .attr("fill",(d,i)=>EmotionColor[resKeys[i]].normal);
     svg.selectAll('YAxis')
-    .data([0,1,2,3,4,5,6,7,8]).enter()
+    .data([0,1,2,3,4,5,6,7]).enter()
     .append('g')
     .append('rect')
     .attr('x',padding.left-0.5)
@@ -127,7 +129,7 @@ const Bar = (props) => {
         return padding.left + index * linearX(1)
       })
       .attr("y",(d,index) => {
-        return padding.top  + i * rectStep + 25 - linearY(d.fatigue)
+        return padding.top  + i * rectStep + rectheight - linearY(d.fatigue)
       })
       .attr("width",linearX(1))
       .attr("height",(d,index) => {
@@ -155,6 +157,22 @@ const Bar = (props) => {
          })
          .attr('fill',"#000000");
     }
+
+    svg.selectAll('.label')
+      .data(resKeys).enter().append('g')
+      .append('rect')
+      .attr('x',width*0.05)
+      .attr('y',(d,index)=> index*height*0.12*0.8+padding.top)
+      .attr('width',width*0.05)
+      .attr('height',height*0.05)
+      .attr('fill',(d)=>EmotionColor[d].normal)
+   svg.selectAll('.labelText')
+      .data(resKeys).enter().append('g')   
+      .append("text") 
+      .attr("transform",function(d,index){
+       return "translate(" + width*0.12 +',' + (index*height*0.12*0.8+padding.top + height*0.05) +")"})
+     .text(d => d)
+
     svg.append("g") 
        .attr("class","axis")
        .attr("transform","translate(" + padding.left + "," + (padding.top-5) + ")")
@@ -162,8 +180,7 @@ const Bar = (props) => {
   }
   return (
     <div className="draw-bar">
-      <div>课堂表现试图</div>
-      <svg ref={svgRef} width="500px" height="300px"></svg>
+      <svg ref={svgRef} width="500px" height="250px"></svg>
     </div>
   )
 }

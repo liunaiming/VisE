@@ -1,0 +1,12 @@
+.ant-list-header {
+  padding: 0 !important;
+  padding-left: 60px !important;
+  /* padding-bottom: 0 !important; */
+}
+.ant-list {
+  height:400px;
+  overflow: auto;
+}
+.ant-list-split .ant-list-header {
+  border-bottom: none !important;
+}

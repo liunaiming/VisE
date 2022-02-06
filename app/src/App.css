@@ -1,15 +1,34 @@
 .box {
-  margin: 20px;
-  display: flex;
-  justify-content: space-between;
-  border: 2px solid black
+  border: 0.5px solid black;
+  width:1200px;
+  height:800px;
+  margin:auto;
+  /* overflow: auto; */
+}
+.title {
+  height:24px;
+  background-color:RGB(120, 188, 233);
+  color:#000000;
+  text-align: center;
+}
 
-}
-.video {
-  width: 900px;
-}
 .controller {
   height: 50px;
+  display: flex;
+  align-items: center;
+}
+.distributionList {
+  height: 400px;
+  overflow: auto;
+}
+.controller-title {
+  width: 100px;
+  margin-left: 15px;
+}
+.distribution-controller {
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
 .system {
   display: flex;
@@ -17,4 +36,10 @@
   float: right;
   width:800px;
   border: 2px solid black;
+}
+.dis-stream {
+  display: flex;
+}
+.bottom-left {
+  width: 400px;
 }

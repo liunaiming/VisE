@@ -64,7 +64,7 @@ const Stream = (props) => {
         .append('g')
         .attr('class','layer')
         .append('path')
-        .attr('calss','area')
+        .attr('class','area')
         .attr('d',area)
         // .attr('fill',"url(#" + linearGradient.attr("id") + ")");
         .attr('fill',(d,index) => EmotionColor[d.key].normal);

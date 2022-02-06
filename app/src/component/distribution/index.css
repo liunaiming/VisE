@@ -5,6 +5,13 @@
 
   height: 24px;
 }
+.distribution-s {
+  display: flex;
+  /* justify-content:space-between;
+   */
+
+  height: 36px;
+}
 .distribution-id {
   width:60px;
 }

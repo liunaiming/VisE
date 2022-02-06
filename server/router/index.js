@@ -21,6 +21,27 @@ router.post('/time', async(ctx, next) => {
   
 })
 
+router.post('/detail', async(ctx, next) => {
+  console.log('detailll')
+  const condition = ctx.request.body;
+  // const startTime = condition.startTime;
+  const endTime = Number(condition.endTime);
+  let cond = []
+  for(let i=0; i<endTime; i++) {
+    cond.push(i)
+  }
+  console.log('cond',cond);
+  const id = condition.id;
+  const other = condition.other;
+  let data = await Diasee.find({'id':id,'timestamp':{$in:cond}})
+  data.sort((a,b)=>a.timestamp-b.timestamp)
+  ctx.response.body = {
+    code : 200,
+    msg:"成功",
+    data:data
+  }
+});
+
 router.post('/stream', async (ctx, next) => {
   const conditions = ctx.request.body;
   let finalTime = Number(conditions.timestamp)

@@ -8,16 +8,17 @@ const Bar = (props) => {
   const svgRef = useRef()
   useEffect(()=>{
     console.log('data in bar',data);
-    drawBar(data,"attention");
-  },[data]);
+    drawBar(data,type);
+  },[data,type]);
   const drawBar = (obj,type) => {
     if(Object.keys(obj).length==0) return;
-    let target = type=='attention'?'fatigue':'attention';
-    let padding = { top: 40 , right: 20, bottom: 20, left: 70 };
+    let target = (type=='attention')?'fatigue':'attention';
     let width = svgRef.current.clientWidth
-    let height = svgRef.current.clientheight;
-    let rectStep = 30;
-    let rectheight = 25;
+    let height = svgRef.current.clientHeight;
+
+    let padding = { top: height*0.1 , right: 20, bottom: 20, left: width*0.3 };
+    let rectStep = height*0.2;
+    let rectheight = height*0.12;
     let keys = Object.keys(obj);
     let res = {
         "a":{
@@ -96,6 +97,7 @@ const Bar = (props) => {
       "disgust",
       "fear",
       "undetected",]
+
     for(let i in res) {
       let item = res[i];
       for(let j in item) {
@@ -127,13 +129,29 @@ const Bar = (props) => {
         //比例尺
       var linearX = d3.scaleLinear()
       .domain([0,maxCount])
-      .range([0,width*0.8]);
+      .range([0,width*0.7]);
 
       var linearY = d3.scaleLinear()
       .domain([0,1])
       .range([0,rectheight*1]);
       
       var xAxis = d3.axisTop(linearX);   
+
+      svg.selectAll('.label')
+         .data(resKeys).enter().append('g')
+         .append('rect')
+         .attr('x',width*0.05)
+         .attr('y',(d,index)=> index*height*0.12*0.8+padding.top)
+         .attr('width',width*0.05)
+         .attr('height',height*0.05)
+         .attr('fill',(d)=>EmotionColor[d].normal)
+      svg.selectAll('.labelText')
+        .data(resKeys).enter().append('g')   
+         .append("text") 
+         .attr("transform",function(d,index){
+            return "translate(" + width*0.12 +',' + (index*height*0.12*0.8+padding.top + height*0.05) +")"})
+          .text(d => d)
+
       svg.selectAll(".bar")
                 .data(resData)
                 .enter().append("g")
@@ -227,8 +245,7 @@ const Bar = (props) => {
   }
   return (
     <div className="draw-bar">
-      <div>课堂表现试图</div>
-      <svg ref={svgRef} width="500px" height="300px"></svg>
+      <svg ref={svgRef} width="500px" height="250px"></svg>
     </div>
   )
 }
